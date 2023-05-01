@@ -9,3 +9,19 @@ export function getAllWines() {
   };
 }
 
+export function postWine(payload) {
+  let post = {
+    name: payload.Nombre,
+    image: payload.Imagen,
+    brand: payload.Marca,
+    price: payload.Precio,
+    color: payload.Color,
+    smell: payload.Olor,
+    flavor: payload.Sabor,
+    type: payload.Tipo,
+    end: payload.Final,
+  };
+  return function () {
+    axios.post("http://localhost:3001/api/createWine", post);
+  };
+}

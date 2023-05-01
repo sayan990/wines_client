@@ -17,13 +17,13 @@ export default function Home() {
 }, [dispatch])
 
 
-
+console.log(wines)
 
   return (
     <div className="bg-purple-900 w-screen h-screen">
       <NavBar/>
       
-      {wines.length < 0 ? wines.map(() => {
+      {wines && wines.length ? wines.map(() => {
 
       }) : <p>no tengo vinos sadge</p>}
 
