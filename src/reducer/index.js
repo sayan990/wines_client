@@ -1,5 +1,6 @@
 import {
-  GET_ALL_WINES
+  GET_ALL_WINES,
+  REGISTER
 } from "../Types"
 
 

@@ -2,11 +2,33 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../actions";
 
 
 export default function Login() {
 
+  const dispatch = useDispatch();
+
+  const [input, setInput] = useState({
+    mail: "",
+    password: "",
+  });
+
+  const handleInputChange = (event) => {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    dispatch(login(input))
+    
+    alert('¡Usuario registrado!')
+    //navigator("/home")
+  };
 
   return (
     <div className="bg-purple-900 w-screen h-screen">
@@ -17,30 +39,34 @@ export default function Login() {
             <h1 class="text-2xl font-bold sm:text-3xl">Log In </h1>
           </div>
 
-          <form action="" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
             <div>
-              <label for="User" class="sr-only">
-                User
+              <label for="mail" className="sr-only">
+                mail
               </label>
               <div class="relative">
                 <input
+                  value={input.mail}
+                  onChange={handleInputChange}
                   type="text"
-                  class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="User"
-                  name="User"
+                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="mail"
+                  name="mail"
                 />
               </div>
             </div>
             <div>
-              <label for="Password" class="sr-only">
+              <label for="password" class="sr-only">
                 Password
               </label>
               <div class="relative">
                 <input
+                  value={input.password}
+                  onChange={handleInputChange}
                   type="password"
-                  name="Password"
+                  name="password"
                   class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Password"
+                  placeholder="password"
                 />
               </div>
             </div>
@@ -55,7 +81,7 @@ export default function Login() {
             </div>
             <p>
               if you don´t have an account{" "}
-              <Link className="text-white" to="/signin">
+              <Link className="text-white" href="/signin">
                 Sign In
               </Link>
             </p>
