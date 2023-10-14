@@ -1,17 +1,21 @@
 import {
   GET_ALL_WINES,
-  REGISTER
+  SET_FILTERS
 } from "../Types"
 
 
   const initialState = {
-    wines: []
+    wines: [],
+    filters: {}
   };
   
   function reducer(state = initialState, action) {
     switch (action.type) {
       case GET_ALL_WINES:
         return { ...state, wines: action.payload };
+      case SET_FILTERS:{
+        return {...state, filters: action.payload}
+      }
     }
   }
   

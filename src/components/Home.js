@@ -17,16 +17,18 @@ export default function Home() {
     dispatch(getAllWines());
 }, [dispatch])
 
-
-console.log(wines)
-
   return (
     <div className="bg-purple-900 w-screen h-screen">
       <NavBar/>
       <Filters/>
-      {wines && wines.wines ? wines.wines.map((w) => 
+      {wines && (wines.wines.length > 0) ? wines.wines.map((w) => 
         <Card img={w.image} name={w.name} brand={w.brand} price={w.price}/>
-      ) : <p>no tengo vinos sadge</p>}
+      ) : 
+      <div>
+      <h2 className="flex justify-center text-white text-5xl pt-52">Alguien se ah tomado todo el vino</h2>
+      <p className="flex justify-center text-white text-xl pb-52">intente borrar los filtros</p>
+      </div>
+      }
 
       <AboutUs/>
     </div>

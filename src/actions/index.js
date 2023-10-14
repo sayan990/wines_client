@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_ALL_WINES} from "../Types"
+import {GET_ALL_WINES, SET_FILTERS} from "../Types"
 
 export function getAllWines() {
   return function (dispatch) {
@@ -63,3 +63,19 @@ export function login(payload) {
     axios.post("http://localhost:3001/api/createUser/login", post);
   };
 }
+
+export function applyFilters(filters)  {
+  return function(dispatch){
+  // Envía los filtros al servidor utilizando Axios
+  axios.post('http://localhost:3001/api/filter', filters)
+    .then((response) => {
+      // Maneja la respuesta del servidor aquí
+      dispatch({ type: GET_ALL_WINES, payload: response.data });
+      console.log('Filtros aplicados:', response.data);
+    })
+    .catch((error) => {
+      // Maneja errores de la solicitud aquí
+      console.error('Error al aplicar filtros:', error);
+    });
+  }
+};
