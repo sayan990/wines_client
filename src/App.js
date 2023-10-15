@@ -6,6 +6,7 @@ import Home from "./components/Home"
 import Login from './pages/Login';
 import UploadImg from './components/UploadImg';
 import SingIn from './pages/SingIn';
+import Detail from './components/Detail';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path='/home' element={<Home />} ></Route>
           <Route exact path='/login' element={<Login />} ></Route>
           <Route exact path='/SignIn' element={<SingIn />} ></Route>
+          <Route exact path='/det/:id' element={<Detail />} ></Route>
           <Route exact path='/soyadmin/uploadwine' element={<UploadImg />} ></Route>
         </Routes>
         </div>

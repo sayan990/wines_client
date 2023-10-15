@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_ALL_WINES, SET_FILTERS} from "../Types"
+import {GET_ALL_WINES, GET_WINE_BY_ID} from "../Types"
 
 export function getAllWines() {
   return function (dispatch) {
@@ -78,4 +78,12 @@ export function applyFilters(filters)  {
       console.error('Error al aplicar filtros:', error);
     });
   }
+};
+
+export function getWineDetail(id)  {
+  return function (dispatch) {
+    axios.get("http://localhost:3001/api/home/" + id).then((response) => {
+      dispatch({ type: GET_WINE_BY_ID, payload: response.data });
+    });
+  };
 };

@@ -22,7 +22,7 @@ export default function Home() {
       <NavBar/>
       <Filters/>
       {wines && (wines.wines.length > 0) ? wines.wines.map((w) => 
-        <Card img={w.image} name={w.name} brand={w.brand} price={w.price}/>
+        <Card id={w.id} img={w.image} name={w.name} brand={w.brand} price={w.price}/>
       ) : 
       <div>
       <h2 className="flex justify-center text-white text-5xl pt-52">Alguien se ah tomado todo el vino</h2>
